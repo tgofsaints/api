@@ -7,7 +7,19 @@ class PeopleController {
         $this->db = new PDO("pgsql:host=silly.db.elephantsql.com;dbname=djfumrnu", "djfumrnu", "36IwgNmwytY-4kRUDqSDGw5q23HTpsNu");
     }
 
-    
+    public function add() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Handle POST request to add a person
+            $name = $_POST['name'];
+            $age = $_POST['age'];
+
+            // Insert the person into the PostgreSQL database
+            $query = $this->db->prepare("INSERT INTO info (name, age) VALUES (:name, :age)");
+            $query->bindParam(':name', $name);
+            $query->bindParam(':age', $age);
+            $query->execute();
+        }
+    }
 
     public function list() {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

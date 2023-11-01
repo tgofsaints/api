@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^list$ index.php?action=list [QSA,L]
+RewriteRule ^add$ index.php?action=add [QSA,L]
